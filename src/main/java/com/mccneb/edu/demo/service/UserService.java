@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -40,6 +41,16 @@ public class UserService {
         if (updatedUser.isPresent()) {
             update = userRepository.save(update);
             return ResponseEntity.ok(updatedUser.get());
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<User> deleteUser(String email) {
+        Optional<User> deletedUser = userRepository.findById(email);
+        if (deletedUser.isPresent()) {
+            userRepository.delete(deletedUser.get());
+            return ResponseEntity.ok(deletedUser.get());
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

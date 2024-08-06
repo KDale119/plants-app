@@ -2,13 +2,17 @@ package com.mccneb.edu.demo.model;
 
 import jakarta.persistence.*;
 
-@Entity(name = "User")
+@Entity(name = "Users")
 public class User {
 
-
+    @Column(name = "username")
     private String userName;
+
     @Id
+    @Column(name = "useremail")
     private String userEmail;
+
+    @Column(name = "userpassword")
     private String userPassword;
 
     public String getUserName() {

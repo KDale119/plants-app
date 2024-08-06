@@ -15,12 +15,4 @@ public class PlantsAppApplication {
 		SpringApplication.run(PlantsAppApplication.class, args);
 	}
 
-	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder){
-		return new RestTemplateBuilder().interceptors(
-				(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) -> {
-					return execution.execute(request, body);
-				}
-		).build();
-	}
 }
