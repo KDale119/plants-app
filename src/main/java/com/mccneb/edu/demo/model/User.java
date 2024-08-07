@@ -1,6 +1,8 @@
 package com.mccneb.edu.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity(name = "Users")
 public class User {
