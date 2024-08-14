@@ -15,7 +15,8 @@ public class ApiDetailsResults {
     private String dimension;
     private List<String> propagation;
     private String watering;
-    private String sunlight;
+    private List<String> sunlight;
+    private DefaultImage defaultImage;
 
     public Integer getId() {
         return id;
@@ -81,11 +82,19 @@ public class ApiDetailsResults {
         this.watering = watering;
     }
 
-    public String getSunlight() {
+    public List<String> getSunlight() {
         return sunlight;
     }
 
-    public void setSunlight(String sunlight) {
+    public void setSunlight(List<String> sunlight) {
         this.sunlight = sunlight;
+    }
+
+    public DefaultImage getDefaultImage() {
+        return defaultImage;
+    }
+
+    public void setDefaultImage(DefaultImage defaultImage) {
+        this.defaultImage = defaultImage;
     }
 }

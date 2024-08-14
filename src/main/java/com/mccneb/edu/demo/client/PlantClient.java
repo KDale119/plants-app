@@ -3,9 +3,12 @@ package com.mccneb.edu.demo.client;
 import com.mccneb.edu.demo.config.ApiConfig;
 import com.mccneb.edu.demo.model.ApiDetailsResults;
 import com.mccneb.edu.demo.model.ApiSpeciesResults;
-import com.mccneb.edu.demo.model.ExternalPlantApi;
+import com.mccneb.edu.demo.utils.SSLUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 
 @Component
@@ -19,13 +22,28 @@ public class PlantClient {
         this.restTemplate = restTemplate;
     }
 
-    public ApiDetailsResults getDetails(String q){
-        ExternalPlantApi response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getPath(), ExternalPlantApi.class, q, apiConfig.getApiKey());
-        return response.getApiDetailsResults().stream().findFirst().get();
+    public ApiDetailsResults getDetails(Integer id) {
+        try {
+            SSLUtils.turnOffSslChecking();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        }
+        ApiDetailsResults response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpeciesDetail(), ApiDetailsResults.class, id, apiConfig.getApiKey());
+        return response;
     }
 
-    public ApiSpeciesResults getSpecies(String q){
-        ExternalPlantApi response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getPath(), ExternalPlantApi.class, q, apiConfig.getApiKey());
-        return response.getApiSpeciesResults().stream().findFirst().get();
+    public ApiSpeciesResults getSpecies(String q) {
+        try {
+            SSLUtils.turnOffSslChecking();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        } catch (KeyManagementException e) {
+            throw new RuntimeException(e);
+        }
+        ApiSpeciesResults response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpecies(), ApiSpeciesResults.class, q, apiConfig.getApiKey());
+            return response;
+
     }
 }

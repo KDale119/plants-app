@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "api")
 public class ApiConfig {
     private String host;
-    private String path;
+    private String species;
+    private String speciesDetail;
     private String apiKey;
 
     public String getHost() {
@@ -18,12 +19,20 @@ public class ApiConfig {
         this.host = host;
     }
 
-    public String getPath() {
-        return path;
+    public String getSpecies() {
+        return species;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getSpeciesDetail() {
+        return speciesDetail;
+    }
+
+    public void setSpeciesDetail(String speciesDetail) {
+        this.speciesDetail = speciesDetail;
     }
 
     public String getApiKey() {

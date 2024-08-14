@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/plant")
+@RequestMapping("/api/plants")
 public class PlantController {
 
     private final PlantService plantService;
@@ -34,7 +34,7 @@ public class PlantController {
         return plantService.findPlantById(plantId);
     }
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<Plant> createPlant(@RequestBody Plant add) {
         return plantService.addPlant(add);
     }

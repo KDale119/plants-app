@@ -2,7 +2,10 @@ package com.mccneb.edu.demo.service;
 
 
 import com.mccneb.edu.demo.client.PlantClient;
+import com.mccneb.edu.demo.mapper.PlantMapper;
+import com.mccneb.edu.demo.mapper.SpeciesMapper;
 import com.mccneb.edu.demo.model.ApiDetailsResults;
+import com.mccneb.edu.demo.model.ApiSpeciesResults;
 import com.mccneb.edu.demo.model.Plant;
 import com.mccneb.edu.demo.repository.PlantRepository;
 import org.springframework.http.HttpStatus;
@@ -16,12 +19,15 @@ public class PlantService {
 
     private final PlantRepository plantRepository;
     private final PlantClient plantClient;
-    private final
+    private final SpeciesMapper speciesMapper;
+    private final PlantMapper plantMapper;
 
 
-    public PlantService(PlantRepository plantRepository, PlantClient plantClient) {
+    public PlantService(PlantRepository plantRepository, PlantClient plantClient, SpeciesMapper speciesMapper, PlantMapper plantMapper) {
         this.plantRepository = plantRepository;
         this.plantClient = plantClient;
+        this.speciesMapper = speciesMapper;
+        this.plantMapper = plantMapper;
     }
 
     public ResponseEntity<List<Plant>> getAllPlants() {
@@ -29,10 +35,13 @@ public class PlantService {
     }
 
     public ResponseEntity<Plant> findPlantById(Integer plantId) {
+        System.out.println(plantId);
         Optional<Plant> optionalPlant = plantRepository.findById(plantId);
         if (optionalPlant.isPresent()) {
             Plant plant = optionalPlant.get();
-            ApiDetailsResults results = plant
+            ApiDetailsResults results = plantClient.getDetails(plant.getPlantId());
+            Plant mappedPlant = plantMapper.mapDetails(results, plant);
+            return ResponseEntity.ok(mappedPlant);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }

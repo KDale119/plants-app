@@ -3,6 +3,8 @@ package com.mccneb.edu.demo.model;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import java.util.ServiceLoader;
+
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ApiSpeciesResults {
     private Integer id;
@@ -32,4 +34,5 @@ public class ApiSpeciesResults {
     public void setDefaultImage(DefaultImage defaultImage) {
         this.defaultImage = defaultImage;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.mccneb.edu.demo.controller;
 
+import com.mccneb.edu.demo.model.Login;
 import com.mccneb.edu.demo.model.User;
 import com.mccneb.edu.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -35,7 +37,7 @@ public class UserController {
         return userService.findUserByEmail(email);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User add) {
         return userService.addUser(add);
     }
@@ -44,9 +46,17 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User update) {
         return userService.userUpdate(email, update);
     }
-
-    @DeleteMapping("{email}")
+    //when you update it doesnt keep all the old data unless you put it in body??
+    @DeleteMapping("/{email}")
     public ResponseEntity<User> deleteUser(@PathVariable String email) {
         return userService.deleteUser(email);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody Login userLogin) {
+        return userService.login(userLogin);
+    }
+
+
+//    login endpoint where provider user password in body 401 if wrong passwrod 404 not found 200 ok
 }

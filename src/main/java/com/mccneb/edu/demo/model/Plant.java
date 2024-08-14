@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 
 @Entity(name = "Plant")
@@ -32,6 +33,12 @@ public class Plant {
 
     @Column(name = "plantwatering")
     private String plantWatering;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "quantity")
+    private String quantity;
 
     public Integer getPlantId() {
         return plantId;
@@ -87,5 +94,21 @@ public class Plant {
 
     public void setPlantWatering(String plantWatering) {
         this.plantWatering = plantWatering;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }
