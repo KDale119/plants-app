@@ -1,5 +1,9 @@
 package com.mccneb.edu.demo.model;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class DefaultImage {
     private String thumbnail;
     private String mediumUrl;

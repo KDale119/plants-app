@@ -1,13 +1,14 @@
 package com.mccneb.edu.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
 
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity(name = "Plant")
 public class Plant {
 
@@ -39,6 +40,15 @@ public class Plant {
 
     @Column(name = "quantity")
     private String quantity;
+
+    @Column(name = "scientificname")
+    private String scientificName;
+
+    @Column(name = "origin")
+    private String origin;
+
+    @Column(name = "propagation")
+    private String propagation;
 
     public Integer getPlantId() {
         return plantId;
@@ -111,4 +121,29 @@ public class Plant {
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
+    public String getScientificName() {
+        return scientificName;
+    }
+
+    public void setScientificName(String scientificName) {
+        this.scientificName = scientificName;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    public String getPropagation() {
+        return propagation;
+    }
+
+    public void setPropagation(String propagation) {
+        this.propagation = propagation;
+    }
 }
+

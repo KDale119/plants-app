@@ -1,6 +1,5 @@
 package com.mccneb.edu.demo.service;
 
-
 import com.mccneb.edu.demo.client.PlantClient;
 import com.mccneb.edu.demo.mapper.PlantMapper;
 import com.mccneb.edu.demo.mapper.SpeciesMapper;
@@ -11,6 +10,7 @@ import com.mccneb.edu.demo.repository.PlantRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,12 +30,16 @@ public class PlantService {
         this.plantMapper = plantMapper;
     }
 
-    public ResponseEntity<List<Plant>> getAllPlants() {
-        return ResponseEntity.ok(plantRepository.findAll());
+    public ResponseEntity<List<Plant>> getAllPlants(String q) {
+        ApiSpeciesResults results = plantClient.getSpecies(q);
+        List<Plant> plants = new ArrayList<>();
+        results.getData().forEach(data -> {
+            plants.add(speciesMapper.mapSpecies(data));
+        });
+        return ResponseEntity.ok(plants);
     }
 
     public ResponseEntity<Plant> findPlantById(Integer plantId) {
-        System.out.println(plantId);
         Optional<Plant> optionalPlant = plantRepository.findById(plantId);
         if (optionalPlant.isPresent()) {
             Plant plant = optionalPlant.get();

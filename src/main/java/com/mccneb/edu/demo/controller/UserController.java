@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -46,7 +45,6 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User update) {
         return userService.userUpdate(email, update);
     }
-    //when you update it doesnt keep all the old data unless you put it in body??
     @DeleteMapping("/{email}")
     public ResponseEntity<User> deleteUser(@PathVariable String email) {
         return userService.deleteUser(email);
@@ -57,6 +55,4 @@ public class UserController {
         return userService.login(userLogin);
     }
 
-
-//    login endpoint where provider user password in body 401 if wrong passwrod 404 not found 200 ok
 }

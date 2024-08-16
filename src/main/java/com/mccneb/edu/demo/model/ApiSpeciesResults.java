@@ -1,38 +1,16 @@
 package com.mccneb.edu.demo.model;
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import java.util.List;
 
-import java.util.ServiceLoader;
-
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class ApiSpeciesResults {
-    private Integer id;
-    private String commonName;
-    private DefaultImage defaultImage;
+    private List<Data> data;
 
-    public Integer getId() {
-        return id;
+    public List<Data> getData() {
+        return data;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setData(List<Data> data) {
+        this.data = data;
     }
-
-    public String getCommonName() {
-        return commonName;
-    }
-
-    public void setCommonName(String commonName) {
-        this.commonName = commonName;
-    }
-
-    public DefaultImage getDefaultImage() {
-        return defaultImage;
-    }
-
-    public void setDefaultImage(DefaultImage defaultImage) {
-        this.defaultImage = defaultImage;
-    }
-
 }
+

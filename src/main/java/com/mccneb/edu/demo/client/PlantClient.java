@@ -6,7 +6,6 @@ import com.mccneb.edu.demo.model.ApiSpeciesResults;
 import com.mccneb.edu.demo.utils.SSLUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
@@ -30,8 +29,7 @@ public class PlantClient {
         } catch (KeyManagementException e) {
             throw new RuntimeException(e);
         }
-        ApiDetailsResults response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpeciesDetail(), ApiDetailsResults.class, id, apiConfig.getApiKey());
-        return response;
+        return restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpeciesDetail(), ApiDetailsResults.class, id, apiConfig.getApiKey());
     }
 
     public ApiSpeciesResults getSpecies(String q) {
@@ -42,8 +40,7 @@ public class PlantClient {
         } catch (KeyManagementException e) {
             throw new RuntimeException(e);
         }
-        ApiSpeciesResults response = restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpecies(), ApiSpeciesResults.class, q, apiConfig.getApiKey());
-            return response;
+        return restTemplate.getForObject(apiConfig.getHost() + apiConfig.getSpecies(), ApiSpeciesResults.class, apiConfig.getApiKey(), q);
 
     }
 }
