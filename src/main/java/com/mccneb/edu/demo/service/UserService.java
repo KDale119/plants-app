@@ -1,5 +1,6 @@
 package com.mccneb.edu.demo.service;
 
+import com.mccneb.edu.demo.model.Login;
 import com.mccneb.edu.demo.model.User;
 import com.mccneb.edu.demo.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -55,4 +56,20 @@ public class UserService {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity<User> login(Login userLogin) {
+        Optional<User> optionalUser = userRepository.findById(userLogin.getUserEmail());
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            if (userLogin.getUserPassword().equals(user.getUserPassword())) {
+                return ResponseEntity.ok(optionalUser.get());
+            } else {
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

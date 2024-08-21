@@ -1,5 +1,6 @@
 package com.mccneb.edu.demo.controller;
 
+import com.mccneb.edu.demo.model.Login;
 import com.mccneb.edu.demo.model.User;
 import com.mccneb.edu.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,7 @@ public class UserController {
         return userService.findUserByEmail(email);
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User add) {
         return userService.addUser(add);
     }
@@ -44,9 +45,14 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable String email, @RequestBody User update) {
         return userService.userUpdate(email, update);
     }
-
-    @DeleteMapping("{email}")
+    @DeleteMapping("/{email}")
     public ResponseEntity<User> deleteUser(@PathVariable String email) {
         return userService.deleteUser(email);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody Login userLogin) {
+        return userService.login(userLogin);
+    }
+
 }
