@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface PlantMapper {
 
-
     @Mapping(source = "apiDetailsResults.id", target = "apiId")
     @Mapping(source = "apiDetailsResults.commonName", target = "plantName")
     @Mapping(source = "apiDetailsResults.type", target = "type")

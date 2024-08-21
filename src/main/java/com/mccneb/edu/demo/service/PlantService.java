@@ -51,6 +51,17 @@ public class PlantService {
         }
     }
 
+    public ResponseEntity<Plant> findPlantByApiId(Integer apiId) {
+        ApiDetailsResults results = plantClient.getDetails(apiId);
+        if (results != null) {
+            Plant plant = new Plant();
+            Plant mappedPlant = plantMapper.mapDetails(results, plant);
+            return ResponseEntity.ok(mappedPlant);
+        } else {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     public ResponseEntity<Plant> addPlant(Plant add) {
         add = plantRepository.save(add);
         return ResponseEntity.ok(add);

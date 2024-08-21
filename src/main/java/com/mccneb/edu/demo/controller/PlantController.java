@@ -34,6 +34,10 @@ public class PlantController {
     public ResponseEntity<Plant> getPlantById(@PathVariable Integer plantId) {
         return plantService.findPlantById(plantId);
     }
+    @GetMapping("/external/{apiId}")
+    public ResponseEntity<Plant> getPlantByApiId(@PathVariable Integer apiId) {
+        return plantService.findPlantByApiId(apiId);
+    }
 
     @PostMapping()
     public ResponseEntity<Plant> createPlant(@RequestBody Plant add) {
