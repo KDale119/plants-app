@@ -36,7 +36,8 @@ public class PlantController {
     }
     @GetMapping("/external/{apiId}")
     public ResponseEntity<Plant> getPlantByApiId(@PathVariable Integer apiId) {
-        return plantService.findPlantByApiId(apiId);
+        Plant resp =  plantService.findPlantByApiId(apiId);
+        return resp != null ? ResponseEntity.ok(resp) : ResponseEntity.notFound().build();
     }
 
     @PostMapping()

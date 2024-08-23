@@ -1,6 +1,5 @@
 package com.mccneb.edu.demo.mapper;
 
-import com.mccneb.edu.demo.model.ApiSpeciesResults;
 import com.mccneb.edu.demo.model.Data;
 import com.mccneb.edu.demo.model.Plant;
 import org.mapstruct.Mapper;
