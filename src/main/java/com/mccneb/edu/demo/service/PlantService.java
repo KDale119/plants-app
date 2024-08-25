@@ -43,7 +43,7 @@ public class PlantService {
         Optional<Plant> optionalPlant = plantRepository.findById(plantId);
         if (optionalPlant.isPresent()) {
             Plant plant = optionalPlant.get();
-            ApiDetailsResults results = plantClient.getDetails(plant.getPlantId());
+            ApiDetailsResults results = plantClient.getDetails(plant.getApiId());
             Plant mappedPlant = plantMapper.mapDetails(results, plant);
             return ResponseEntity.ok(mappedPlant);
         } else {
@@ -51,14 +51,13 @@ public class PlantService {
         }
     }
 
-    public ResponseEntity<Plant> findPlantByApiId(Integer apiId) {
+    public Plant findPlantByApiId(Integer apiId) {
         ApiDetailsResults results = plantClient.getDetails(apiId);
         if (results != null) {
             Plant plant = new Plant();
-            Plant mappedPlant = plantMapper.mapDetails(results, plant);
-            return ResponseEntity.ok(mappedPlant);
+            return plantMapper.mapDetails(results, plant);
         } else {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return null;
         }
     }
 
