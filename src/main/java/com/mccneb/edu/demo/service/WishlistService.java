@@ -25,11 +25,11 @@ public class WishlistService {
     }
 
     public Wishlist addToWishlist(AddToWishlistRequest wishlistRequest){
-        Optional<Plant> isPresent = plantRepository.findByApiId(wishlistRequest.getPlantExternalApiId());
+        Optional<Plant> plantByExternalApiId = plantRepository.findByApiId(wishlistRequest.getPlantExternalApiId());
         Plant plant = null;
 
-        if(isPresent.isPresent()){
-            plant = isPresent.get();
+        if(plantByExternalApiId.isPresent()){
+            plant = plantByExternalApiId.get();
         } else {
             plant = plantService.findPlantByApiId(wishlistRequest.getPlantExternalApiId());
             plant = plantRepository.save(plant);
@@ -53,13 +53,18 @@ public class WishlistService {
         return plants;
     }
 
-    public Boolean deleteItem(String userEmailAddress, Integer plantId){
-        WishlistKey wishlistKey = new WishlistKey();
-        wishlistKey.setUserEmail(userEmailAddress).setPlantId(plantId);
-        Optional<Wishlist> item = wishlistRepository.findById(wishlistKey);
-        if(item.isPresent()){
-            wishlistRepository.deleteById(wishlistKey);
-            return true;
+    public Boolean deleteItem(String userEmailAddress, Integer externalApiId){
+        Optional<Plant> plantByExternalApiId = plantRepository.findByApiId(externalApiId);
+        if(plantByExternalApiId.isPresent()){
+            WishlistKey wishlistKey = new WishlistKey();
+            wishlistKey.setUserEmail(userEmailAddress).setPlantId(plantByExternalApiId.get().getPlantId());
+            Optional<Wishlist> item = wishlistRepository.findById(wishlistKey);
+            if(item.isPresent()){
+                wishlistRepository.deleteById(wishlistKey);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
