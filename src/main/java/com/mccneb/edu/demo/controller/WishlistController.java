@@ -30,9 +30,9 @@ public class WishlistController {
         return ResponseEntity.ok(wishlistService.getUsersWishlist(email));
     }
 
-    @DeleteMapping("/{email}/{plantId}")
-    public ResponseEntity<Void> deleteWishlistItem(@PathVariable String email, @PathVariable Integer plantId) {
-        return wishlistService.deleteItem(email, plantId) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    @DeleteMapping("/{email}/{externalApiId}")
+    public ResponseEntity<Void> deleteWishlistItem(@PathVariable String email, @PathVariable Integer externalApiId) {
+        return wishlistService.deleteItem(email, externalApiId) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 
 }
