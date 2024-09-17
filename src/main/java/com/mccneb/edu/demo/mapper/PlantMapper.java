@@ -21,5 +21,5 @@ public interface PlantMapper {
 
 
 
-    Plant mapDetails(ApiDetailsResults apiDetailsResults, Plant plant);
+    Plant mapDetails(ApiDetailsResults apiDetailsResults);
 }

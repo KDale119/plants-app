@@ -35,6 +35,7 @@ public class PlantService {
         List<Plant> plants = new ArrayList<>();
         results.getData().forEach(data -> {
             plants.add(speciesMapper.mapSpecies(data));
+
         });
         return ResponseEntity.ok(plants);
     }
@@ -44,7 +45,7 @@ public class PlantService {
         if (optionalPlant.isPresent()) {
             Plant plant = optionalPlant.get();
             ApiDetailsResults results = plantClient.getDetails(plant.getApiId());
-            Plant mappedPlant = plantMapper.mapDetails(results, plant);
+            Plant mappedPlant = plantMapper.mapDetails(results);
             return ResponseEntity.ok(mappedPlant);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
@@ -54,8 +55,7 @@ public class PlantService {
     public Plant findPlantByApiId(Integer apiId) {
         ApiDetailsResults results = plantClient.getDetails(apiId);
         if (results != null) {
-            Plant plant = new Plant();
-            return plantMapper.mapDetails(results, plant);
+            return plantMapper.mapDetails(results);
         } else {
             return null;
         }
