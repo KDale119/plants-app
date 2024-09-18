@@ -36,10 +36,12 @@ jobs:
           mkdir ../../plant-be/src/main/resources/static
           cp -r * ../../plant-be/src/main/resources/static
       - name: Build
+        working-directory: ./plant-be
         run: mvn clean install
       - name: Login to Docker
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
       - name: Build Docker
+        working-directory: ./plant-be
         run: docker build -t estohlmann/mcc-plant-app .
       - name: Push Docker Image
         run: docker push estohlmann/mcc-plant-app:latest
