@@ -34,7 +34,7 @@ jobs:
         working-directory: ./plant-fe/out
         run: |
           mkdir ../../plant-be/src/main/resources/static
-          cp * ../../plant-be/src/main/resources/static
+          cp -r * ../../plant-be/src/main/resources/static
       - name: Build
         run: mvn clean install
       - name: Login to Docker
