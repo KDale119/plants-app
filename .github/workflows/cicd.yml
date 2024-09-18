@@ -11,6 +11,7 @@ jobs:
       - name: Checkout BE
         uses: actions/checkout@main
         with:
+          repository: KDale119/plants-app
           path: './plant-be'
       - name: Checkout FE
         uses: actions/checkout@main
