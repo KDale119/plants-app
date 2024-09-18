@@ -145,5 +145,8 @@ public class Plant {
     public void setPropagation(String propagation) {
         this.propagation = propagation;
     }
+
 }
+
+
 
