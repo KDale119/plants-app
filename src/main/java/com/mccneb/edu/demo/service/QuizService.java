@@ -64,7 +64,17 @@ public class QuizService {
         return quizRepository.findByQuizId(quizId);
     }
 
-    public List<Quiz> findQuizByUserName(String userName) {
-        return quizRepository.findByUserName(userName);
+    public List<QuizResultsResponseDTO> findQuizByUserName(String userName) {
+        List<Quiz> quizzes = quizRepository.findByUserName(userName);
+
+        return quizzes.stream().map(quiz -> {
+            List<PlantDetailsDTO> plantDetailsList = List.of(quiz.getQuizResults().split(","))
+                    .stream()
+                    .map(apiId -> plantClient.getDetails(Integer.parseInt(apiId)))
+                    .map(this::mapToPlantDetailsDTO)
+                    .collect(Collectors.toList());
+
+            return new QuizResultsResponseDTO(quiz, plantDetailsList);
+        }).collect(Collectors.toList());
     }
 }

@@ -10,6 +10,7 @@ public class PlantDetailsDTO {
     private String dimension;
     private List<String> propagation;
 
+    // Constructor
     public PlantDetailsDTO(Integer apiId, String plantName, String sunlight, String watering, String dimension, List<String> propagation) {
         this.apiId = apiId;
         this.plantName = plantName;
@@ -19,22 +20,53 @@ public class PlantDetailsDTO {
         this.propagation = propagation;
     }
 
-    public Integer getApiId() { return apiId; }
-    public void setApiId(Integer apiId) { this.apiId = apiId; }
+    // Getters and Setters
+    public Integer getApiId() {
+        return apiId;
+    }
 
-    public String getPlantName() { return plantName; }
-    public void setPlantName(String plantName) { this.plantName = plantName; }
+    public void setApiId(Integer apiId) {
+        this.apiId = apiId;
+    }
 
-    public String getSunlight() { return sunlight; }
-    public void setSunlight(String sunlight) { this.sunlight = sunlight; }
+    public String getPlantName() {
+        return plantName;
+    }
 
-    public String getWatering() { return watering; }
-    public void setWatering(String watering) { this.watering = watering; }
+    public void setPlantName(String plantName) {
+        this.plantName = plantName;
+    }
 
-    public String getDimension() { return dimension; }
-    public void setDimension(String dimension) { this.dimension = dimension; }
+    public String getSunlight() {
+        return sunlight;
+    }
 
-    public List<String> getPropagation() { return propagation; }
-    public void setPropagation(List<String> propagation) { this.propagation = propagation; }
+    public void setSunlight(String sunlight) {
+        this.sunlight = sunlight;
+    }
+
+    public String getWatering() {
+        return watering;
+    }
+
+    public void setWatering(String watering) {
+        this.watering = watering;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public List<String> getPropagation() {
+        return propagation;
+    }
+
+    public void setPropagation(List<String> propagation) {
+        this.propagation = propagation;
+    }
 
 }
