@@ -33,8 +33,8 @@ public class QuizController {
 
 
     @GetMapping("/{quizId}")
-    public ResponseEntity<Quiz> getQuizById(@PathVariable Integer quizId) {
-        Optional<Quiz> quiz = Optional.ofNullable(quizService.findQuizById(quizId));
+    public ResponseEntity<QuizResultsResponseDTO> getQuizById(@PathVariable Integer quizId) {
+        Optional<QuizResultsResponseDTO> quiz = Optional.ofNullable(quizService.findQuizById(quizId));
         return quiz.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
