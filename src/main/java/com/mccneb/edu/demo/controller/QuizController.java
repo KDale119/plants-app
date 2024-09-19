@@ -39,8 +39,8 @@ public class QuizController {
     }
 
     @GetMapping("/results/{userName}")
-    public ResponseEntity<List<Quiz>> getQuizByUserName(@PathVariable String userName) {
-        List<Quiz> quiz = quizService.findQuizByUserName(userName);
+    public ResponseEntity<List<QuizResultsResponseDTO>> getQuizByUserName(@PathVariable String userName) {
+        List<QuizResultsResponseDTO> quiz = quizService.findQuizByUserName(userName);
         if (quiz.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
