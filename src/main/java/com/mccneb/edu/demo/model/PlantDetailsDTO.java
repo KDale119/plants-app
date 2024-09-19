@@ -9,15 +9,17 @@ public class PlantDetailsDTO {
     private String watering;
     private String dimension;
     private List<String> propagation;
+    private String image;
 
     // Constructor
-    public PlantDetailsDTO(Integer apiId, String plantName, String sunlight, String watering, String dimension, List<String> propagation) {
+    public PlantDetailsDTO(Integer apiId, String plantName, String sunlight, String watering, String dimension, List<String> propagation, String image) {
         this.apiId = apiId;
         this.plantName = plantName;
         this.sunlight = sunlight;
         this.watering = watering;
         this.dimension = dimension;
         this.propagation = propagation;
+        this.image = image;
     }
 
     // Getters and Setters
@@ -69,4 +71,12 @@ public class PlantDetailsDTO {
         this.propagation = propagation;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public PlantDetailsDTO setImage(String image) {
+        this.image = image;
+        return this;
+    }
 }
